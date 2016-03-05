@@ -1,0 +1,45 @@
+<ion-view view-title="Expenses">
+  <ion-content>
+    <h1>Expenses</h1>
+
+	<form>
+    <div class="add-expense-form">
+        <div class="input">
+            <input type="text"  ng-model="expenses.newExpense.amount" class="form-input-amount new-expense-data" placeholder="Amount"> 
+            <input type="text"  ng-model="expenses.newExpense.description" class="form-input-description new-expense-data" placeholder="Description"> 
+            <input type="text"  ng-model="expenses.newExpense.budgetCategory" class="form-input-budget-category new-expense-data" placeholder="Budget Category"> 
+          	<input type="text"  ng-model="expenses.newExpense.paidBy" class="form-input-paid-by new-expense-data" placeholder="Paid By"> 
+
+            <!-- <select class="priority-levels" ng-model="active.newTask.priority">
+                <option value="" disabled selected>Select Priority</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+            </select> -->
+		</div> 
+		<button type="submit" class="button" ng-click="expenses.addExpense()" ng-disabled="!expenses.newExpense.description">Add</button>
+	</div>
+	</form>
+
+    <table class="table table-hover">
+  		<thead>
+  			<tr class="table-row-headers">
+	  			<th class="date">Date</th>
+	  			<th class="amount">Amount</th>
+	  			<th class="description">Description</th>
+	  			<th class="budget-category">Budget Category</th>
+	  			<th class="paid-by">Paid By</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+            <tr colspan="5" class="expenses-list-row" ng-repeat="expense in expenses.expenses">
+                <td class="expense-date">{{ expense.date }}</td>
+                <td class="expense-amount">{{ expense.amount }}</td>
+                <td class="expense-description">{{ expense.description }}</td>
+                <td class="expense-budget-category">{{ expense.budgetCategory }}</td>
+                <td class="expense-paid-by">{{ expense.paidBy }}</td>
+            </tr>
+		</tbody>
+	</table>
+  </ion-content>
+</ion-view>
