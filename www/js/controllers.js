@@ -68,6 +68,12 @@ angular.module('starter.controllers', [])
       
       $scope.expenses = $firebaseArray(ref);
 
+      var ref = new Firebase("https://whopaid.firebaseio.com/budgets");
+      var ref2 = new Firebase("https://whopaid.firebaseio.com/users");
+
+      $scope.budgetCategories = $firebaseArray(ref);
+      $scope.users = $firebaseArray(ref2);
+
       // var now = new Date();
       // $scope.newExpense.date = now.toDateString();
       // $scope.newExpense.amount = "$5.00";

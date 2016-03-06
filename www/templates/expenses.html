@@ -5,17 +5,20 @@
 	<form>
     <div class="add-expense-form">
         <div class="input">
-            <input type="text"  ng-model="newExpense.amount" class="form-input-amount new-expense-data" placeholder="Amount"> 
+            <input type="text"  ng-model="newExpense.amount" class="form-input-amount new-expense-data" placeholder="Amount">
             <input type="text"  ng-model="newExpense.description" class="form-input-description new-expense-data" placeholder="Description"> 
-            <input type="text"  ng-model="newExpense.budgetCategory" class="form-input-budget-category new-expense-data" placeholder="Budget Category"> 
-          	<input type="text"  ng-model="newExpense.paidBy" class="form-input-paid-by new-expense-data" placeholder="Paid By"> 
-
-            <!-- <select class="priority-levels" ng-model="active.newTask.priority">
-                <option value="" disabled selected>Select Priority</option>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Low">Low</option>
-            </select> -->
+            <div class="expenses-categories">
+	             <select class="expenses-categories">
+	                <option value="" disabled selected>Select Budget Category</option>
+	                <option ng-repeat="budgetCategory in budgetCategories" value="{{ budgetCategory.description }}">{{ budgetCategory.description }}</option>
+	            </select>
+        	</div>
+	        	<div class="paid-by-users">
+	            <select class="paid-by-users">
+	                <option value="" disabled selected>Select Paid By</option>
+	                <option ng-repeat="user in users" value="{{ user.name }}">{{ user.name }}</option>
+	            </select>
+        	</div>
 		</div> 
 		<button type="submit" class="button" ng-click="addExpense()" ng-disabled="!newExpense.amount">Add</button>
 	</div>
