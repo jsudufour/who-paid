@@ -93,24 +93,33 @@ angular.module('starter.controllers', [])
 
   $scope.addCategory = addCategory;
   $scope.newCategory = {};
+  $scope.addUser = addUser;
+  $scope.newUser = {};
 
   function activate() {
 
     $log.debug(CONTROLLER_ID + " activated");
 
     var ref = new Firebase("https://whopaid.firebaseio.com/budgets");
+    var ref2 = new Firebase("https://whopaid.firebaseio.com/users");
 
     $scope.budgetCategories = $firebaseArray(ref);
+    $scope.users = $firebaseArray(ref2);
 
   }
 
   activate();
 
   function addCategory() {
-
     $scope.budgetCategories.$add($scope.newCategory);
     $scope.newCategory = {};
   }
+
+  function addUser() {
+    $scope.users.$add($scope.newUser);
+    $scope.newUser = {};
+  }
+
 
 });
 

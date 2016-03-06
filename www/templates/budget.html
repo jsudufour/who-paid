@@ -2,7 +2,7 @@
   <ion-content>
     <h1>Budget</h1>
 
-    	<form>
+    <form>
     <div class="add-budget-category-form">
         <div class="input">
         	<input type="text"  ng-model="newCategory.description" class="form-input-description new-budget-category-data" placeholder="Description"> 
@@ -24,6 +24,30 @@
             <tr colspan="2" class="expenses-list-row" ng-repeat="budgetCategory in budgetCategories">
                 <td class="expense-date">{{ budgetCategory.description }}</td>
                 <td class="expense-amount">{{ budgetCategory.amount }}</td>
+            </tr>
+		</tbody>
+	</table>
+
+
+    <form>
+    <div class="add-users-form">
+        <div class="input">
+        	<input type="text"  ng-model="newUser.name" class="form-input-description new-user-data" placeholder="Name"> 
+		</div> 
+		<button type="submit" class="button" ng-click="addUser()" ng-disabled="!newUser.name">Add</button>
+	</div>
+	</form>
+	  <pre ng-if="false">USERS: {{ users|json }}</pre>
+
+    <table class="table table-hover">
+  		<thead>
+  			<tr class="table-row-headers">
+	  			<th class="description">Users</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+            <tr colspan="2" class="users-list-row" ng-repeat="user in users">
+                <td class="expense-date">{{ user.name }}</td>
             </tr>
 		</tbody>
 	</table>
