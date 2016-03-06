@@ -55,7 +55,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'firebase'])
       url: '/budget',
       views: {
         'menuContent': {
-          templateUrl: 'templates/budget.html'
+          templateUrl: 'templates/budget.html',
+          controller: 'BudgetCtrl'
         }
       }
     })

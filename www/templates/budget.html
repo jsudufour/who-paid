@@ -1,5 +1,34 @@
 <ion-view view-title="Budget">
   <ion-content>
     <h1>Budget</h1>
+
+    	<form>
+    <div class="add-budget-category-form">
+        <div class="input">
+        	<input type="text"  ng-model="newCategory.description" class="form-input-description new-budget-category-data" placeholder="Description"> 
+            <input type="text"  ng-model="newCategory.amount" class="form-input-amount new-budget-category-data" placeholder="Monthly Budget">
+		</div> 
+		<button type="submit" class="button" ng-click="addCategory()" ng-disabled="!newCategory.description">Add</button>
+	</div>
+	</form>
+	  <pre ng-if="false">BUDGET CATEGORIES: {{ budget|json }}</pre>
+
+    <table class="table table-hover">
+  		<thead>
+  			<tr class="table-row-headers">
+	  			<th class="description">Description</th>
+	  			<th class="monthly-budget">Monthly Budget</th>
+  			</tr>
+  		</thead>
+  		<tbody>
+            <tr colspan="2" class="expenses-list-row" ng-repeat="budgetCategory in budgetCategories">
+                <td class="expense-date">{{ budgetCategory.description }}</td>
+                <td class="expense-amount">{{ budgetCategory.amount }}</td>
+            </tr>
+		</tbody>
+	</table>
+
+
+
   </ion-content>
 </ion-view>

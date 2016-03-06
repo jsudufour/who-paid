@@ -64,7 +64,7 @@ angular.module('starter.controllers', [])
 
       $log.debug(CONTROLLER_ID + " activated");
 
-      var ref = new Firebase("https://whopaid.firebaseio.com/");
+      var ref = new Firebase("https://whopaid.firebaseio.com/expenses");
       
       $scope.expenses = $firebaseArray(ref);
 
@@ -85,4 +85,37 @@ angular.module('starter.controllers', [])
       $scope.expenses.$add($scope.newExpense);
       $scope.newExpense = {};
     }
+})
+
+.controller('BudgetCtrl', function($scope, $log, $firebaseArray) {
+
+  var CONTROLLER_ID = "BudgetCtrl";
+
+  $scope.addCategory = addCategory;
+  $scope.newCategory = {};
+
+  function activate() {
+
+    $log.debug(CONTROLLER_ID + " activated");
+
+    var ref = new Firebase("https://whopaid.firebaseio.com/budgets");
+
+    $scope.budgetCategories = $firebaseArray(ref);
+
+  }
+
+  activate();
+
+  function addCategory() {
+
+    $scope.budgetCategories.$add($scope.newCategory);
+    $scope.newCategory = {};
+  }
+
 });
+
+
+
+
+
+
