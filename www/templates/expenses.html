@@ -5,10 +5,10 @@
 	<form>
     <div class="add-expense-form">
         <div class="input">
-            <input type="text"  ng-model="expenses.newExpense.amount" class="form-input-amount new-expense-data" placeholder="Amount"> 
-            <input type="text"  ng-model="expenses.newExpense.description" class="form-input-description new-expense-data" placeholder="Description"> 
-            <input type="text"  ng-model="expenses.newExpense.budgetCategory" class="form-input-budget-category new-expense-data" placeholder="Budget Category"> 
-          	<input type="text"  ng-model="expenses.newExpense.paidBy" class="form-input-paid-by new-expense-data" placeholder="Paid By"> 
+            <input type="text"  ng-model="newExpense.amount" class="form-input-amount new-expense-data" placeholder="Amount"> 
+            <input type="text"  ng-model="newExpense.description" class="form-input-description new-expense-data" placeholder="Description"> 
+            <input type="text"  ng-model="newExpense.budgetCategory" class="form-input-budget-category new-expense-data" placeholder="Budget Category"> 
+          	<input type="text"  ng-model="newExpense.paidBy" class="form-input-paid-by new-expense-data" placeholder="Paid By"> 
 
             <!-- <select class="priority-levels" ng-model="active.newTask.priority">
                 <option value="" disabled selected>Select Priority</option>
@@ -17,9 +17,10 @@
                 <option value="Low">Low</option>
             </select> -->
 		</div> 
-		<button type="submit" class="button" ng-click="expenses.addExpense()" ng-disabled="!expenses.newExpense.description">Add</button>
+		<button type="submit" class="button" ng-click="addExpense()" ng-disabled="!newExpense.amount">Add</button>
 	</div>
 	</form>
+	  <pre ng-if="false">EXPENSES: {{ expenses|json }}</pre>
 
     <table class="table table-hover">
   		<thead>
@@ -32,7 +33,7 @@
   			</tr>
   		</thead>
   		<tbody>
-            <tr colspan="5" class="expenses-list-row" ng-repeat="expense in expenses.expenses">
+            <tr colspan="5" class="expenses-list-row" ng-repeat="expense in expenses">
                 <td class="expense-date">{{ expense.date }}</td>
                 <td class="expense-amount">{{ expense.amount }}</td>
                 <td class="expense-description">{{ expense.description }}</td>

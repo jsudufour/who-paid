@@ -57,26 +57,32 @@ angular.module('starter.controllers', [])
 
    var CONTROLLER_ID = 'ExpensesCtrl';
 
-    var vm = $scope;
-    //bindable methods
-    vm.addExpense = addExpense;
-    vm.newExpense = {};
+    $scope.addExpense = addExpense;
+    $scope.newExpense = {};
 
     function activate() {
 
       $log.debug(CONTROLLER_ID + " activated");
 
       var ref = new Firebase("https://whopaid.firebaseio.com/");
+      
+      $scope.expenses = $firebaseArray(ref);
 
-      vm.expenses = $firebaseArray(ref);
+      // var now = new Date();
+      // $scope.newExpense.date = now.toDateString();
+      // $scope.newExpense.amount = "$5.00";
+      // $scope.newExpense.description = "Coffee";
+      // $scope.newExpense.budgetCategory = "Food";
+      // $scope.newExpense.paidBy = "Jo";
+      // $scope.expenses.$add($scope.newExpense);
     }
 
     activate();
 
     function addExpense() {
       var now = new Date();
-      vm.newExpense.date = now.toDateString();
-      vm.expenses.$add(vm.newExpense);
-      vm.newExpense = {};
+      $scope.newExpense.date = now.toDateString();
+      $scope.expenses.$add($scope.newExpense);
+      $scope.newExpense = {};
     }
 });
