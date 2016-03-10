@@ -59,6 +59,8 @@ angular.module('starter.controllers', [])
 
     $scope.addExpense = addExpense;
     $scope.newExpense = {};
+    $scope.editExpense = editExpense;
+    $scope.deleteExpense = deleteExpense;
 
     function activate() {
 
@@ -90,6 +92,14 @@ angular.module('starter.controllers', [])
       $scope.newExpense.date = now.toDateString();
       $scope.expenses.$add($scope.newExpense);
       $scope.newExpense = {};
+    }
+
+    function editExpense() {
+      
+    }
+
+    function deleteExpense(id) {
+      $scope.expenses.$remove(id);
     }
 })
 
