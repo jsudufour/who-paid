@@ -70,11 +70,11 @@ angular.module('starter.controllers', [])
       
       $scope.expenses = $firebaseArray(ref);
 
-      var ref = new Firebase("https://whopaid.firebaseio.com/budgets");
-      var ref2 = new Firebase("https://whopaid.firebaseio.com/users");
+      var ref2 = new Firebase("https://whopaid.firebaseio.com/budgets");
+      var ref3 = new Firebase("https://whopaid.firebaseio.com/users");
 
-      $scope.budgetCategories = $firebaseArray(ref);
-      $scope.users = $firebaseArray(ref2);
+      $scope.budgetCategories = $firebaseArray(ref2);
+      $scope.users = $firebaseArray(ref3);
 
       // var now = new Date();
       // $scope.newExpense.date = now.toDateString();
@@ -95,7 +95,7 @@ angular.module('starter.controllers', [])
     }
 
     function editExpense() {
-      
+
     }
 
     function deleteExpense(id) {
@@ -111,6 +111,8 @@ angular.module('starter.controllers', [])
   $scope.newCategory = {};
   $scope.addUser = addUser;
   $scope.newUser = {};
+  $scope.deleteCategory = deleteCategory;
+  $scope.deleteUser = deleteUser;
 
   function activate() {
 
@@ -135,6 +137,14 @@ angular.module('starter.controllers', [])
     $scope.users.$add($scope.newUser);
     $scope.newUser = {};
   }
+
+  function deleteCategory(id) {
+      $scope.budgetCategories.$remove(id);
+    }
+
+  function deleteUser(id) {
+      $scope.users.$remove(id);
+    }
 
 
 });

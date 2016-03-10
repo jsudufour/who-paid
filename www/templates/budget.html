@@ -22,9 +22,11 @@
   		</thead>
   		<tbody>
             <tr colspan="2" class="expenses-list-row" ng-repeat="budgetCategory in budgetCategories">
-                <td class="expense-date">{{ budgetCategory.description }}</td>
-                <td class="expense-amount">{{ budgetCategory.amount }}</td>
+                <td class="category-description">{{ budgetCategory.description }}</td>
+                <td class="category-amount">{{ budgetCategory.amount }}</td>
+                <td class="ion-trash-a" ng-click="deleteCategory($index)"></td>
             </tr>
+
 		</tbody>
 	</table>
 
@@ -48,6 +50,7 @@
   		<tbody>
             <tr colspan="2" class="users-list-row" ng-repeat="user in users">
                 <td class="expense-date">{{ user.name }}</td>
+                <td class="ion-trash-a" ng-click="deleteUser($index)"></td>
             </tr>
 		</tbody>
 	</table>
