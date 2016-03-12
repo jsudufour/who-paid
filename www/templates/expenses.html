@@ -8,16 +8,12 @@
             <input type="text"  ng-model="newExpense.amount" class="form-input-amount new-expense-data" placeholder="Amount">
             <input type="text"  ng-model="newExpense.description" class="form-input-description new-expense-data" placeholder="Description"> 
             <div class="expenses-categories">
-	             <select class="expenses-categories">
-	                <option value="" disabled selected>Select Budget Category</option>
-	                <option ng-repeat="budgetCategory in budgetCategories" value="{{ budgetCategory.description }}">{{ budgetCategory.description }}</option>
-	            </select>
+            	<label>Select Budget Category: </label>
+            	<select ng-model="newExpense.budgetCategory" ng-options="budgetCategory.description for budgetCategory in budgetCategories"></select>
         	</div>
 	        	<div class="paid-by-users">
-	            <select class="paid-by-users">
-	                <option value="" disabled selected>Select Paid By</option>
-	                <option ng-repeat="user in users" value="{{ user.name }}">{{ user.name }}</option>
-	            </select>
+	        	<label>Select Payee: </label>
+	            <select ng-model="newExpense.paidBy" ng-options="user.name for user in users"></select>
         	</div>
 		</div> 
 		<button type="submit" class="button" ng-click="addExpense()" ng-disabled="!newExpense.amount">Add</button>
@@ -38,7 +34,7 @@
   		<tbody>
             <tr colspan="5" class="expenses-list-row" ng-repeat="expense in expenses">
                 <td class="expense-date">{{ expense.date }}</td>
-                <td class="expense-amount">{{ expense.amount }}</td>
+                <td class="expense-amount">{{ expense.amount | currency }}</td>
                 <td class="expense-description">{{ expense.description }}</td>
                 <td class="expense-budget-category">{{ expense.budgetCategory }}</td>
                 <td class="expense-paid-by">{{ expense.paidBy }}</td>
