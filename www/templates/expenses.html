@@ -36,8 +36,8 @@
                 <td class="expense-date">{{ expense.date }}</td>
                 <td class="expense-amount">{{ expense.amount | currency }}</td>
                 <td class="expense-description">{{ expense.description }}</td>
-                <td class="expense-budget-category">{{ expense.budgetCategory }}</td>
-                <td class="expense-paid-by">{{ expense.paidBy }}</td>
+                <td class="expense-budget-category">{{ expense.budgetCategory.description }}</td>
+                <td class="expense-paid-by">{{ expense.paidBy.name }}</td>
                 <td class="ion-edit" ng-click="editExpense()"></td>
                 <td class="ion-trash-a" ng-click="deleteExpense($index)"></td>
             </tr>

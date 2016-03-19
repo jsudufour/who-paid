@@ -1,5 +1,16 @@
 <ion-view view-title="Overview">
   <ion-content>
     <h1>Overview</h1>
+
+    <div class="current-month-chart">
+    	<h4>{{ currentMonthAsString() }}'s Expenses</h4>
+    </div>
+
+    <div>
+    	<tr class="expenses" ng-repeat="expense in expenses | filter: expense.date.getMonth() == currentMonthAsString()">
+            <td class="category-description">{{ expense.amount }}</td>
+        </tr>
+    </div>
+
   </ion-content>
 </ion-view>
