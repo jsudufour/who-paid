@@ -6,11 +6,12 @@
     	<h4>{{ currentMonthAsString() }}'s Expenses</h4>
     </div>
 
-    <div>
-    	<tr class="expenses" ng-repeat="expense in expenses | filter: expense.date.getMonth() == currentMonthAsString()">
+    		<pre>{{expenses|json}}</pre>
+    <table class="table">
+    	<tr class="expenses" ng-repeat="expense in expenses | filter:filterByMonth(10)">
             <td class="category-description">{{ expense.amount }}</td>
         </tr>
-    </div>
+    </table>
 
   </ion-content>
 </ion-view>

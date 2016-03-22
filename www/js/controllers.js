@@ -161,50 +161,67 @@ angular.module('starter.controllers', [])
   $scope.users = $firebaseArray(ref3);
   $scope.expenses = $firebaseArray(ref);
   $scope.currentMonthAsString = currentMonthAsString;
+  $scope.currentMonthSubstring = currentMonthSubstring;
+  $scope.filterByCurrentMonth = filterByCurrentMonth;
+  $scope.filterByMonth = filterByMonth;
 
   function activate() {
     var CONTROLLER_ID = "OverviewCtrl";
     $log.debug(CONTROLLER_ID + " activated");
+    // $log.debug(currentMonthSubstring());
   }
 
   activate();
 
+  function getMonthFromIndex(index) {
+    var monthNames = {
+      0: 'January',
+      1: 'February',
+      2: 'March',
+      3: 'April',
+      4: 'May',
+      5: 'June',
+      6: 'July',
+      7: 'August',
+      8: 'September',
+      9: 'October',
+      10: 'November',
+      11: 'December'
+    }
+    return monthNames[index];
+  }
+
   function currentMonthAsString() {
     var now = new Date();
     var month = now.getMonth();
-    
-    switch (month) {
-      case 0:
-        return "January";
-      case 1:
-        return "February";
-      case 2:
-        return "March";
-      case 3:
-       return "April";
-      case 4:
-        return "May";
-      case 5:
-        return "June";
-      case 6:
-        return "July";
-      case 7:
-        return "August";
-      case 8:
-        return "September";
-      case 9:
-        return "October";
-      case 10:
-        return "November";
-      case 11:
-        return "December";
-      default:
-        return " ";
-    }
+    return getMonthFromIndex(month);
   }
 
-  function isCurrentMonth() {
-    expenses
+
+  function currentMonthSubstring() {
+    var shortMonth = currentMonthAsString().substring(0,3);
+    return shortMonth;
+  }
+
+  function filterByMonth(month){
+   return function(item){ 
+    var itemAsDateObject = new Date(item);
+    return itemAsDateObject.getMonth() == month;
+    // var parts = item.date.match(/^(\d{4})\-(\d{2})\-(\d{2})\s(\d{2})\:(\d{2})\:(\d{2})$/);
+    // var result = month[1]===parseInt(parts[2]) && month[0]===parseInt(parts[1]);
+    // return result;
+  };
+}
+
+  function filterByCurrentMonth(){
+    console.log("filterByCurrentMonth");
+    var currentMonth = 10;
+    var f = filterByMonth(currentMonth);
+    return function(item) {
+      console.log(currentMonth);
+      console.log(item, f(item));
+      return f(item);
+    }
   }
     
 });
