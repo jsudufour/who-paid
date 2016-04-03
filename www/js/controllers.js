@@ -88,8 +88,10 @@ angular.module('starter.controllers', [])
     activate();
 
     function addExpense() {
-      var now = new Date();
-      $scope.newExpense.date = now.toDateString();
+      // var now = new Date();
+      // $scope.newExpense.date = now.toDateString();
+      var day = new Date();
+      $scope.newExpense.date = day.toDateString();
       $scope.expenses.$add($scope.newExpense);
       $scope.newExpense = {};
     }
@@ -161,7 +163,6 @@ angular.module('starter.controllers', [])
   $scope.users = $firebaseArray(ref3);
   $scope.expenses = $firebaseArray(ref);
   $scope.currentMonthAsString = currentMonthAsString;
-  $scope.currentMonthSubstring = currentMonthSubstring;
   $scope.filterByCurrentMonth = filterByCurrentMonth;
   $scope.filterByMonth = filterByMonth;
 
@@ -191,40 +192,50 @@ angular.module('starter.controllers', [])
     return monthNames[index];
   }
 
+  function monthAsSubstring(){
+    var monthNames = {
+      0: 'Jan',
+      1: 'Feb',
+      2: 'Mar',
+      3: 'Apr',
+      4: 'May',
+      5: 'Jun',
+      6: 'Jul',
+      7: 'Aug',
+      8: 'Sep',
+      9: 'Oct',
+      10: 'Nov',
+      11: 'Dec'
+    }
+    return monthNames[index];
+  }
+
   function currentMonthAsString() {
     var now = new Date();
     var month = now.getMonth();
     return getMonthFromIndex(month);
   }
 
-
-  function currentMonthSubstring() {
-    var shortMonth = currentMonthAsString().substring(0,3);
-    return shortMonth;
-  }
-
   function filterByMonth(month){
    return function(item){ 
-    var itemAsDateObject = new Date(item);
+    var itemAsDateObject = new Date();
     return itemAsDateObject.getMonth() == month;
-    // var parts = item.date.match(/^(\d{4})\-(\d{2})\-(\d{2})\s(\d{2})\:(\d{2})\:(\d{2})$/);
-    // var result = month[1]===parseInt(parts[2]) && month[0]===parseInt(parts[1]);
-    // return result;
   };
 }
 
   function filterByCurrentMonth(){
     console.log("filterByCurrentMonth");
-    var currentMonth = 10;
+    var now = new Date();
+    var currentMonth = now.getMonth();
     var f = filterByMonth(currentMonth);
     return function(item) {
-      console.log(currentMonth);
-      console.log(item, f(item));
+      // console.log("current month " + currentMonth);
+      // console.log("item and function of item " + item, f(item));
       return f(item);
     }
   }
     
-});
+})
 
 
 

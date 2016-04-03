@@ -33,7 +33,7 @@
   		</thead>
   		<tbody>
             <tr colspan="5" class="expenses-list-row" ng-repeat="expense in expenses">
-                <td class="expense-date">{{ expense.date }}</td>
+                <td class="expense-date">{{ expense.date | date:'mediumDate' }}</td>
                 <td class="expense-amount">{{ expense.amount | currency }}</td>
                 <td class="expense-description">{{ expense.description }}</td>
                 <td class="expense-budget-category">{{ expense.budgetCategory.description }}</td>

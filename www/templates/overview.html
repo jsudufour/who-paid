@@ -8,7 +8,7 @@
 
     		<pre>{{expenses|json}}</pre>
     <table class="table">
-    	<tr class="expenses" ng-repeat="expense in expenses | filter:filterByMonth(10)">
+    	<tr class="expenses" ng-repeat="expense in expenses | filter:filterByCurrentMonth()">
             <td class="category-description">{{ expense.amount }}</td>
         </tr>
     </table>
