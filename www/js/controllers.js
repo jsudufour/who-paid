@@ -165,6 +165,9 @@ angular.module('starter.controllers', [])
   $scope.currentMonthAsString = currentMonthAsString;
   $scope.filterByCurrentMonth = filterByCurrentMonth;
   $scope.filterByMonth = filterByMonth;
+  $scope.monthAsSubstring = monthAsSubstring;
+  $scope.filterBySubstring = filterBySubstring;
+  $scope.total = 0;
 
   function activate() {
     var CONTROLLER_ID = "OverviewCtrl";
@@ -192,7 +195,13 @@ angular.module('starter.controllers', [])
     return monthNames[index];
   }
 
-  function monthAsSubstring(){
+  function currentMonthAsString() {
+    var now = new Date();
+    var month = now.getMonth();
+    return getMonthFromIndex(month);
+  }
+
+  function monthAsSubstring(index){
     var monthNames = {
       0: 'Jan',
       1: 'Feb',
@@ -210,21 +219,24 @@ angular.module('starter.controllers', [])
     return monthNames[index];
   }
 
-  function currentMonthAsString() {
+
+  function filterBySubstring() {
+   if (filterByCurrentMonth()) {
     var now = new Date();
-    var month = now.getMonth();
-    return getMonthFromIndex(month);
+    var currentMonth = now.getMonth();
+    return monthAsSubstring(currentMonth);
+   }
   }
+  
 
   function filterByMonth(month){
    return function(item){ 
-    var itemAsDateObject = new Date();
-    return itemAsDateObject.getMonth() == month;
-  };
-}
+      var itemAsDateObject = new Date();
+      return itemAsDateObject.getMonth() == month;
+    };
+  }
 
   function filterByCurrentMonth(){
-    console.log("filterByCurrentMonth");
     var now = new Date();
     var currentMonth = now.getMonth();
     var f = filterByMonth(currentMonth);

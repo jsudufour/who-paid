@@ -6,12 +6,20 @@
     	<h4>{{ currentMonthAsString() }}'s Expenses</h4>
     </div>
 
-    		<pre>{{expenses|json}}</pre>
+    		<!-- <pre>{{expenses|json}}</pre> -->
     <table class="table">
-    	<tr class="expenses" ng-repeat="expense in expenses | filter:filterByCurrentMonth()">
+    	<tr class="expenses" ng-repeat="expense in expenses | filter:filterBySubstring()">
             <td class="category-description">{{ expense.amount }}</td>
+            <td class="total-expenses" ng-init="totalExpenses = expense.amount; total = total + totalExpenses">
+        </tr>
+        <tr>
+            <td>
+                <h5 >Total Expenses: {{ totalExpenses | currency }}</h5>
+            </td>
         </tr>
     </table>
+
+        
 
   </ion-content>
 </ion-view>
