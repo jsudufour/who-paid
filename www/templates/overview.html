@@ -10,11 +10,11 @@
     <table class="table">
     	<tr class="expenses" ng-repeat="expense in expenses | filter:filterBySubstring()">
             <td class="category-description">{{ expense.amount }}</td>
-            <td class="total-expenses" ng-init="totalExpenses = expense.amount; total = total + totalExpenses">
+           <!--  <td class="total-expenses" ng-init="totalExpenses = expense.amount; total = total + totalExpenses"> -->
         </tr>
         <tr>
             <td>
-                <h5 >Total Expenses: {{ totalExpenses | currency }}</h5>
+                <h5>Total Expenses: {{ totalExpenses | currency }}</h5>
             </td>
         </tr>
     </table>

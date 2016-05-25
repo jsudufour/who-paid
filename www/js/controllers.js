@@ -108,6 +108,7 @@ angular.module('starter.controllers', [])
 .controller('BudgetCtrl', function($scope, $log, $firebaseArray) {
 
   var CONTROLLER_ID = "BudgetCtrl";
+  var budgetCategoryCounter = 0;
 
   $scope.addCategory = addCategory;
   $scope.newCategory = {};
@@ -133,6 +134,7 @@ angular.module('starter.controllers', [])
   function addCategory() {
     $scope.budgetCategories.$add($scope.newCategory);
     $scope.newCategory = {};
+    budgetCategoryCounter++;
   }
 
   function addUser() {
@@ -246,6 +248,18 @@ angular.module('starter.controllers', [])
       return f(item);
     }
   }
+
+  // function filterByBudgetCategory(ref) {
+  //   for (var i = 0; i < )
+  //     if (ref.$keyAt(ref[i]) 
+  // }
+
+  //log an object with all the contents of the ref array to the console
+  ref.on("value", function(snapshot) {
+    console.log(snapshot.val());
+  }, function (errorObject) {
+    console.log("The read failed: " + errorObject.code);
+  });
     
 })
 
