@@ -67,7 +67,7 @@ angular.module('starter.controllers', [])
       $log.debug(CONTROLLER_ID + " activated");
 
       var ref = new Firebase("https://whopaid.firebaseio.com/expenses");
-      
+
       $scope.expenses = $firebaseArray(ref);
 
       var ref2 = new Firebase("https://whopaid.firebaseio.com/budgets");
@@ -169,7 +169,20 @@ angular.module('starter.controllers', [])
   $scope.filterByMonth = filterByMonth;
   $scope.monthAsSubstring = monthAsSubstring;
   $scope.filterBySubstring = filterBySubstring;
-  $scope.total = 0;
+  $scope.getTotal = function() {
+    var total = 0;
+    for (var i = 0; i < $scope.expenses.length; i++) {
+      total += parseInt($scope.expenses[i].amount);
+      console.log($scope.expenses[i].amount);
+    }
+    return total;
+  }
+  // $scope.$watch('expenses', function(newValue, oldValue) {
+  //   if (newValue.length !== oldValue.length) {
+  //     console.log("Expenses changed", $scope.expenses);
+  //   }
+  //   console.log($scope.expenses);
+  // });
 
   function activate() {
     var CONTROLLER_ID = "OverviewCtrl";
@@ -229,10 +242,10 @@ angular.module('starter.controllers', [])
     return monthAsSubstring(currentMonth);
    }
   }
-  
+
 
   function filterByMonth(month){
-   return function(item){ 
+   return function(item){
       var itemAsDateObject = new Date();
       return itemAsDateObject.getMonth() == month;
     };
@@ -251,20 +264,14 @@ angular.module('starter.controllers', [])
 
   // function filterByBudgetCategory(ref) {
   //   for (var i = 0; i < )
-  //     if (ref.$keyAt(ref[i]) 
+  //     if (ref.$keyAt(ref[i])
   // }
 
   //log an object with all the contents of the ref array to the console
-  ref.on("value", function(snapshot) {
-    console.log(snapshot.val());
-  }, function (errorObject) {
-    console.log("The read failed: " + errorObject.code);
-  });
-    
+  // ref.on("value", function(snapshot) {
+  //   console.log(snapshot.val());
+  // }, function (errorObject) {
+  //   console.log("The read failed: " + errorObject.code);
+  // });
+
 })
-
-
-
-
-
-
