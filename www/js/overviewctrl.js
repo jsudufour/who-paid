@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('starter.overviewctrl', [])
 
 .controller('OverviewCtrl', function($scope, $log, $firebaseArray) {
 
@@ -24,17 +24,11 @@ angular.module('starter.controllers', [])
     }
     return total;
   }
-  // $scope.$watch('expenses', function(newValue, oldValue) {
-  //   if (newValue.length !== oldValue.length) {
-  //     console.log("Expenses changed", $scope.expenses);
-  //   }
-  //   console.log($scope.expenses);
-  // });
+
 
   function activate() {
     var CONTROLLER_ID = "OverviewCtrl";
     $log.debug(CONTROLLER_ID + " activated");
-    // $log.debug(currentMonthSubstring());
   }
 
   activate();
