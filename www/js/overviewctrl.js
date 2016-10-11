@@ -17,10 +17,21 @@ angular.module('starter.overviewctrl', [])
   $scope.monthAsSubstring = monthAsSubstring;
   $scope.filterBySubstring = filterBySubstring;
   $scope.getTotal = function() {
+        console.log();
     var total = 0;
+    var now = new Date();
+    var currentMonth = String(monthAsSubstring(now.getMonth()));
+    // console.log("current month " + currentMonth);
     for (var i = 0; i < $scope.expenses.length; i++) {
-      total += parseInt($scope.expenses[i].amount);
-      console.log($scope.expenses[i].amount);
+      var itemMonth = $scope.expenses[i].date;
+      // console.log("Item month is " + itemMonth);
+      if (itemMonth.includes(currentMonth)) {
+        total += parseInt($scope.expenses[i].amount);
+    } else {
+        continue;
+    }
+      // console.log($scope.expenses[i].amount);
+      // console.log("Logging item's date " + $scope.expenses[i].date);
     }
     return total;
   }
@@ -92,13 +103,14 @@ angular.module('starter.overviewctrl', [])
     };
   }
 
+
   function filterByCurrentMonth(){
     var now = new Date();
     var currentMonth = now.getMonth();
     var f = filterByMonth(currentMonth);
     return function(item) {
-      // console.log("current month " + currentMonth);
-      // console.log("item and function of item " + item, f(item));
+      console.log("current month " + currentMonth);
+      console.log("item and function of item " + item, f(item));
       return f(item);
     }
   }
