@@ -20,18 +20,16 @@ angular.module('starter.overviewctrl', [])
         console.log();
     var total = 0;
     var now = new Date();
+    var currentYear = now.getFullYear();
     var currentMonth = String(monthAsSubstring(now.getMonth()));
-    // console.log("current month " + currentMonth);
     for (var i = 0; i < $scope.expenses.length; i++) {
-      var itemMonth = $scope.expenses[i].date;
-      // console.log("Item month is " + itemMonth);
-      if (itemMonth.includes(currentMonth)) {
+      var itemDate = $scope.expenses[i].date;
+      if (itemDate.includes(currentMonth) && itemDate.indexOf(currentYear) !== -1) {
         total += parseInt($scope.expenses[i].amount);
-    } else {
-        continue;
-    }
-      // console.log($scope.expenses[i].amount);
-      // console.log("Logging item's date " + $scope.expenses[i].date);
+      } else {
+          continue;
+      }
+
     }
     return total;
   }
@@ -109,22 +107,10 @@ angular.module('starter.overviewctrl', [])
     var currentMonth = now.getMonth();
     var f = filterByMonth(currentMonth);
     return function(item) {
-      console.log("current month " + currentMonth);
-      console.log("item and function of item " + item, f(item));
+      // console.log("current month " + currentMonth);
+      // console.log("item and function of item " + item, f(item));
       return f(item);
     }
   }
-
-  // function filterByBudgetCategory(ref) {
-  //   for (var i = 0; i < )
-  //     if (ref.$keyAt(ref[i])
-  // }
-
-  //log an object with all the contents of the ref array to the console
-  // ref.on("value", function(snapshot) {
-  //   console.log(snapshot.val());
-  // }, function (errorObject) {
-  //   console.log("The read failed: " + errorObject.code);
-  // });
 
 })
